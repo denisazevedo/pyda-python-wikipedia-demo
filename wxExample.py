@@ -1,6 +1,4 @@
 import wx
-import wikipedia
-import wolframalpha
 
 class MyFrame(wx.Frame):
     def __init__(self):
@@ -24,19 +22,9 @@ class MyFrame(wx.Frame):
     def OnEnter(self, event):
         input = self.txt.GetValue()
         input = input.lower()
-        try:
-            # wolframalpha
-            app_id = "VWTYR8-69K4JLGKL8"
-            client = wolframalpha.Client(app_id)
-            res = client.query(input)
-            answer = next(res.results).text
-            print("From Wolfram|Alpha:\n{}".format(answer))
-        except:
-            # wikipedia
-            wikipedia.set_lang("pt")
-            answer = wikipedia.summary(input, sentences=2)
-            print("From Wikipedia:\n{}".format(answer))
-        
+        print("It worked!")
+
+
 if __name__ == "__main__":
     app = wx.App(True)
     frame = MyFrame()
