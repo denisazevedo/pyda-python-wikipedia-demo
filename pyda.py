@@ -33,6 +33,10 @@ class MyFrame(wx.Frame):
             print("From Wolfram|Alpha:\n{}".format(answer))
         except:
             # wikipedia
+            # Remove the 2 initial words like "Who is", "What is", "How are"
+            # input = input.split(' ')
+            # input = " ".join(input[2])
+
             wikipedia.set_lang("pt")
             answer = wikipedia.summary(input, sentences=2)
             print("From Wikipedia:\n{}".format(answer))
