@@ -1,6 +1,12 @@
+# https://github.com/KhanradCoder/PyDa-Course-Code
+
 import wx
 import wikipedia
 import wolframalpha
+
+# http://developer.wolframalpha.com/portal/myapps/
+app_id = "YOUR APP ID"
+client = wolframalpha.Client(app_id)
 
 class MyFrame(wx.Frame):
     def __init__(self):
@@ -26,20 +32,20 @@ class MyFrame(wx.Frame):
         input = input.lower()
         try:
             # wolframalpha
-            app_id = "VWTYR8-69K4JLGKL8"
-            client = wolframalpha.Client(app_id)
             res = client.query(input)
             answer = next(res.results).text
             print("From Wolfram|Alpha:\n{}".format(answer))
         except:
             # wikipedia
-            # Remove the 2 initial words like "Who is", "What is", "How are"
-            # input = input.split(' ')
-            # input = " ".join(input[2])
-
-            wikipedia.set_lang("pt")
-            answer = wikipedia.summary(input, sentences=2)
-            print("From Wikipedia:\n{}".format(answer))
+            try:
+                # Remove the 2 initial words like "Who is", "What is", "How are"
+                # input = input.split(' ')
+                # input = " ".join(input[2])
+                wikipedia.set_lang("pt")
+                answer = wikipedia.summary(input, sentences=2)
+                print("From Wikipedia:\n{}".format(answer))
+            except:
+                print("I don't know")
         
 if __name__ == "__main__":
     app = wx.App(True)
